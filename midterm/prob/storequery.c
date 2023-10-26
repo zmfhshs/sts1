@@ -21,12 +21,28 @@ if ((fp = fopen(argv[1], "rb")) == NULL ) {
 fprintf(stderr, "Error Open File\n");
 return 2;
 }
-printf("-----------------------------------\n");
+printf("0 : list of all goods, 1: list of available goods\n)");
+int a;
+scanf("%d",a);
+if ( a= 0){
 printf("%-9s %-7s %-7s %-4s %-9s\n","id", "name", "category", "expired date", "stock");
 while (fread(&rec, sizeof(rec), 1, fp) > 0) 
 if (rec.id != 0)
-printf(" %d %s %s %d %d", &rec.id, rec.name, rec.category,&rec.expireddate,&rec.stock);
-printf("-----------------------------------\n");
+printf(" %ls %s %s %ls %ls", &rec.id, rec.name, rec.category,&rec.expireddate,&rec.stock);
+
+
 fclose(fp);
 return 0;
 }
+
+
+if (a = 1){
+
+printf("%-9s %-7s %-7s %-4s %-9s\n","id", "name", "category", "expireddate", "stock");
+while (fread(&rec, sizeof(rec), 1, fp) > 0) 
+if (rec.stock !=0 && rec.expireddate <=2022)
+printf("%ls %s %s %ls %ls", &rec.id, rec.name, rec.category,&rec.expireddate,&rec.stock);
+
+fclose(fp);
+return 0;
+}}
